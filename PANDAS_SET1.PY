@@ -1,24 +1,24 @@
-#1
+#-----Program 1-----
 import pandas as pd
 
 df = pd.read_csv("data.csv")
 print(df)
 
-#2
+#-----Program 2-----
 import pandas as pd
 
 df = pd.read_csv("data.csv")
 
 print(df.head())
 
-#3
+#-----Program 3-----
 import pandas as pd
 
 df = pd.read_csv("data.csv")
 
 print("Rows and Columns:", df.shape)
 
-#4
+#-----Program 4-----
 import pandas as pd
 
 df = pd.read_csv("data.csv")
@@ -27,7 +27,7 @@ df_filtered = df[df["column_name"] > 10]
 
 print(df_filtered)
 
-#5
+#-----Program 5-----
 import pandas as pd
 
 df = pd.read_csv("data.csv")
@@ -38,14 +38,14 @@ df = df.dropna()
 
 print(df)
 
-#6
+#-----Program 6-----
 import pandas as pd
 
 df = pd.read_csv("data.csv")
 
 print(df.groupby("category").mean(numeric_only=True))
 
-#7
+#-----Program 7-----
 import pandas as pd
 
 df1 = pd.DataFrame({
@@ -62,7 +62,7 @@ result = pd.merge(df1, df2, on="ID")
 
 print(result)
 
-#8
+#-----Program 8-----
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -72,7 +72,7 @@ df["category"].value_counts().plot(kind="bar")
 
 plt.show()
 
-#9
+#-----Program 9-----
 import pandas as pd
 
 df = pd.read_csv("data.csv")
@@ -83,7 +83,7 @@ df["Month"] = df["date"].dt.month
 
 print(df)
 
-# 10
+#-----Program 10-----
 import pandas as pd
 
 df = pd.read_csv("data.csv")

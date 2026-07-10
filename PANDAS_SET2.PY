@@ -1,4 +1,4 @@
-#1
+#-----Program 1-----
 import pandas as pd
 from sklearn.datasets import load_iris
 
@@ -10,7 +10,7 @@ df["species"] = iris.target_names[iris.target]
 
 print(df.head())
 
-#2
+#-----Program 2-----
 import pandas as pd
 from sklearn.datasets import load_iris
 
@@ -25,7 +25,7 @@ result = df[(df["sepal length (cm)"] > 5) &
 
 print(result)
 
-#3
+#-----Program 3-----
 import pandas as pd
 
 df = pd.read_csv("missing.csv")
@@ -34,7 +34,7 @@ df = df.fillna(df.mean(numeric_only=True))
 
 print(df)
 
-#4
+#-----Program 4-----
 import pandas as pd
 from sklearn.datasets import load_iris
 
@@ -46,7 +46,7 @@ df["species"] = iris.target_names[iris.target]
 
 print(df.groupby("species").agg(["mean","median","std"]))
 
-#5
+#-----Program 5-----
 import pandas as pd
 
 students = pd.DataFrame({
@@ -63,7 +63,7 @@ result = pd.merge(students, courses, on="ID")
 
 print(result)
 
-#6
+#-----Program 6-----
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -81,7 +81,7 @@ plt.ylabel("Closing Price")
 plt.title("Stock Price")
 plt.show()
 
-#7
+#-----Program 7-----
 import pandas as pd
 
 df = pd.read_csv("sales.csv")
@@ -93,7 +93,7 @@ pivot = df.pivot_table(values="Sales",
 
 print(pivot)
 
-#8
+#-----Program 8-----
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -103,7 +103,7 @@ df.hist()
 
 plt.show()
 
-#9
+#-----Program 9-----
 import pandas as pd
 import numpy as np
 
@@ -115,7 +115,7 @@ df["Square Root"] = df["Number"].apply(np.sqrt)
 
 print(df)
 
-# 10
+#-----Program 10-----
 import pandas as pd
 
 df = pd.read_csv("category.csv")
