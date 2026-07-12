@@ -117,7 +117,7 @@ print(df)
 
 #-----Program 10-----
 import pandas as pd
-
+    
 df = pd.read_csv("category.csv")
 
 result = pd.get_dummies(df, columns=["Color"])
