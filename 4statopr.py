@@ -40,7 +40,7 @@ print("Updated Array:", result)
 
 # 4(d) Multiply each row of a 2D array by a different constant
 
-rows = int(input("\n\nD\nEnter number of rows: "))
+rows = int(input("\nD\nEnter number of rows: "))
 cols = int(input("Enter number of columns: "))
 
 print("Enter the matrix elements:")
