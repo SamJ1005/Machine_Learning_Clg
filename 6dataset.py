@@ -22,7 +22,7 @@ print(df)
 
 # Dataset Information
 print("\nDataset Information:")
-print(df.info())
+df.info()
 
 # Statistical Summary
 print("\nStatistical Summary:")
