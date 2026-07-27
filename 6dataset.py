@@ -17,16 +17,13 @@ for i in range(n):
 # Create DataFrame
 df = pd.DataFrame(data, columns=["Roll No", "Name", "Marks"])
 
-print("\nDataFrame:")
-print(df)
+print("\nDataFrame:\n",df)
 
 # Dataset Information
-print("\nDataset Information:")
-df.info()
+print("\nDataset Information:\n",df.info())
 
 # Statistical Summary
-print("\nStatistical Summary:")
-print(df.describe())
+print("\nStatistical Summary:\n",df.describe())
 
 # Plot Marks
 plt.bar(df["Name"], df["Marks"])

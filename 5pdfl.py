@@ -17,5 +17,4 @@ for i in range(n):
 
 df = pd.DataFrame(data, columns=["Roll No", "Name", "Marks"])
 
-print("\nDataFrame:")
-print(df)
+print("\nDataFrame:\n",df)
