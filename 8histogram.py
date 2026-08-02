@@ -15,5 +15,4 @@ plt.hist(data, bins=bins, edgecolor="black")
 plt.title("Histogram")
 plt.xlabel("Class Interval")
 plt.ylabel("Frequency")
-
 plt.show()
