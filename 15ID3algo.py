@@ -2,7 +2,6 @@ import pandas as pd
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 import matplotlib.pyplot as plt
 
-# Dataset
 data = {
     'Outlook': ['Sunny', 'Sunny', 'Overcast', 'Rain', 'Rain',
                 'Rain', 'Overcast', 'Sunny', 'Sunny', 'Rain',
@@ -26,8 +25,6 @@ data = {
 }
 
 df = pd.DataFrame(data)
-
-# Convert categorical data into numerical values
 X = pd.get_dummies(df[['Outlook', 'Temperature', 'Humidity', 'Wind']])
 y = df['PlayTennis']
 
@@ -43,11 +40,8 @@ new_sample = pd.DataFrame({
     'Wind': ['Strong']
 })
 
-# Convert new sample using the same columns
 new_sample = pd.get_dummies(new_sample)
 new_sample = new_sample.reindex(columns=X.columns, fill_value=0)
-
-# Prediction
 prediction = model.predict(new_sample)
 
 print("New Sample:")
@@ -55,8 +49,7 @@ print("Outlook = Sunny")
 print("Temperature = Cool")
 print("Humidity = High")
 print("Wind = Strong")
-
-print("\nPredicted Class:", prediction[0])
+print("\n\nPredicted Class:", prediction[0])
 
 # Plot decision tree
 plt.figure(figsize=(15, 8))
