@@ -1,62 +1,41 @@
 import pandas as pd
+from sklearn.preprocessing import LabelEncoder
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 import matplotlib.pyplot as plt
 
-data = {
-    'Outlook': ['Sunny', 'Sunny', 'Overcast', 'Rain', 'Rain',
-                'Rain', 'Overcast', 'Sunny', 'Sunny', 'Rain',
-                'Sunny', 'Overcast', 'Overcast', 'Rain'],
+data = pd.read_csv("playtennis.csv")
+X = data[["Outlook", "Temperature", "Humidity", "Wind"]].copy()
+Y = data["Play"]
 
-    'Temperature': ['Hot', 'Hot', 'Hot', 'Mild', 'Cool',
-                    'Cool', 'Cool', 'Mild', 'Cool', 'Mild',
-                    'Mild', 'Mild', 'Hot', 'Mild'],
+encoders = {}
+for col in X.columns:
+    encoders[col] = LabelEncoder()
+    X[col] = encoders[col].fit_transform(X[col])
 
-    'Humidity': ['High', 'High', 'High', 'High', 'Normal',
-                 'Normal', 'Normal', 'High', 'Normal', 'Normal',
-                 'Normal', 'High', 'Normal', 'High'],
+Y = LabelEncoder().fit_transform(Y)
 
-    'Wind': ['Weak', 'Strong', 'Weak', 'Weak', 'Weak',
-             'Strong', 'Strong', 'Weak', 'Weak', 'Weak',
-             'Strong', 'Strong', 'Weak', 'Strong'],
+model = DecisionTreeClassifier(criterion="entropy")
+model.fit(X, Y)
+print("Predictions:", model.predict(X))
 
-    'PlayTennis': ['No', 'No', 'Yes', 'Yes', 'Yes',
-                   'No', 'Yes', 'No', 'Yes', 'Yes',
-                   'Yes', 'Yes', 'Yes', 'No']
-}
-
-df = pd.DataFrame(data)
-X = pd.get_dummies(df[['Outlook', 'Temperature', 'Humidity', 'Wind']])
-y = df['PlayTennis']
-
-# Create ID3 Decision Tree
-model = DecisionTreeClassifier(criterion='entropy', random_state=0)
-model.fit(X, y)
-
-# New sample
 new_sample = pd.DataFrame({
-    'Outlook': ['Sunny'],
-    'Temperature': ['Cool'],
-    'Humidity': ['High'],
-    'Wind': ['Strong']
+    "Outlook": ["Sunny"],
+    "Temperature": ["Cool"],
+    "Humidity": ["High"],
+    "Wind": ["Strong"]
 })
 
-new_sample = pd.get_dummies(new_sample)
-new_sample = new_sample.reindex(columns=X.columns, fill_value=0)
+for col in X.columns:
+    new_sample[col] = encoders[col].transform(new_sample[col])
+
 prediction = model.predict(new_sample)
 
-print("New Sample:")
-print("Outlook = Sunny")
-print("Temperature = Cool")
-print("Humidity = High")
-print("Wind = Strong")
-print("\n\nPredicted Class:", prediction[0])
+print("\nNew Sample:")
+print("Sunny, Cool, High, Strong")
+print("Predicted Class:", "Yes" if prediction[0] == 1 else "No")
 
-# Plot decision tree
-plt.figure(figsize=(15, 8))
-plot_tree(model,
-          feature_names=X.columns,
-          class_names=model.classes_,
-          filled=True)
-
-plt.title("Decision Tree using ID3 Algorithm")
+plt.figure(figsize=(12, 7))
+plot_tree(model, feature_names=X.columns,
+          class_names=["No", "Yes"], filled=True)
+plt.title("ID3 Decision Tree")
 plt.show()

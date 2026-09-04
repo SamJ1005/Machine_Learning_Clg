@@ -1,29 +1,26 @@
-import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 
-# Dataset
-X = np.array([1, 2, 3, 4, 5]).reshape(-1, 1)
-Y = np.array([2, 4, 5, 4, 5])
+# Load data
+data = pd.read_csv("calories.csv")
 
-# Create and train the model
+X = data[["Time"]]
+Y = data["Calories"]
+
 model = LinearRegression()
 model.fit(X, Y)
-
-# Predict values
 Y_pred = model.predict(X)
 
-# Display equation
 print("Slope:", model.coef_[0])
 print("Intercept:", model.intercept_)
-print("Regression Equation: Y =", model.coef_[0], "* X +", model.intercept_)
+print("Calories for 6 hours:",
+      model.predict(pd.DataFrame({"Time": [6]}))[0])
 
-# Plot the graph
-plt.scatter(X, Y, color='blue', label='Actual Data')
-plt.plot(X, Y_pred, color='red', label='Regression Line')
-
-plt.xlabel("X")
-plt.ylabel("Y")
+# Plot graph
+plt.scatter(X, Y)
+plt.plot(X, Y_pred)
+plt.xlabel("Time (hours)")
+plt.ylabel("Calories")
 plt.title("Simple Linear Regression")
-plt.legend()
 plt.show()
