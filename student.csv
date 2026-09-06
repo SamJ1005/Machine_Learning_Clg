@@ -1,0 +1,11 @@
+Age,StudyHours,Result
+18,2,Fail
+19,3,Fail
+20,2,Fail
+21,4,Pass
+22,5,Pass
+23,6,Pass
+19,5,Pass
+20,4,Pass
+21,2,Fail
+22,3,Fail
